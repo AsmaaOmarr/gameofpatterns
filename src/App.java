@@ -41,6 +41,7 @@ public class App {
                 switch (randomAbility) {
                     case 0:
                         playerDefense = new IncreasedAttackPowerDecorator(playerDefense);
+                        playerAttack.setPlayerAbility(playerDefense);
                         battleSystem.notifyObservers("You received Increased Attack Power!");
                         break;
                     case 1:
@@ -59,8 +60,6 @@ public class App {
             // Player's turn
             System.out.println("\nYour Turn: Choose an action: 1) Attack 2) Defend 3) Dodge");
             int playerChoice = scanner.nextInt();
-            boolean defendedDodgedThisTurn = false;
-
             switch (playerChoice) {
                 case 1: // Attack
                     System.out.println("Choose attack strategy: 1) Light 2) Heavy");
@@ -77,12 +76,10 @@ public class App {
                 case 2: // Defend
                     playerDefense = new ShieldDecorator(basicDefense);
                     battleSystem.notifyObservers("You chose to defend!");
-                    defendedDodgedThisTurn = true;
                     break;
                 case 3: // Dodge
                     playerDefense = new SpeedBoostDecorator(basicDefense, 0.5);
                     battleSystem.notifyObservers("You chose to dodge!");
-                    defendedDodgedThisTurn = true;
                     break;
                 default:
                     System.out.println("Invalid action. Try again.");
@@ -132,13 +129,13 @@ public class App {
                 System.out.println("You were defeated by the enemy. Game over.");
                 break;
             }
+            System.out.println(playerDefense);
             // Display current health
             System.out.println("\nPlayer Health: " + playerHealth + " | Enemy Health: " + enemyHealth);
 
             // Remove the defense or dodge decorator after each round
-            if (defendedDodgedThisTurn) {
-                playerDefense = basicDefense;
-            }
+            playerDefense = basicDefense;
+        
         }
 
         scanner.close();

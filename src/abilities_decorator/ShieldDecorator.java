@@ -10,7 +10,7 @@ public class ShieldDecorator implements PlayerAbility {
 
     @Override
     public int modifyDefense(int damage) {
-        // Reduce damage by half when shield is active
+        // Reduce damage by half 
         return playerAbility.modifyDefense(damage) / 2;
     }
 }

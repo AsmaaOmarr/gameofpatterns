@@ -12,6 +12,7 @@ public class SpeedBoostDecorator implements PlayerAbility {
 
     @Override
     public int modifyDefense(int damage) {
+        // will not - any damage from player health
         if (tryDodge()) {
             return 0;
         }
