@@ -1,16 +1,14 @@
 import attack_strategy.*;
 import notification_observer.*;
 import utlis.GameConstants;
-
 import java.util.Random;
 import java.util.Scanner;
-
 import abilities_decorator.*;
 
 public class App {
     public static void main(String[] args) throws Exception {
         
-    BattleSystem battleSystem = new BattleSystem();
+    BattleSystem battleSystem = new BattleSystem(); //observer
     Player player = new Player("Player 1");
     battleSystem.addObserver(player);
 
@@ -111,13 +109,11 @@ public class App {
                 }
                 break;
         }
-
         // Check if player is defeated
         if (playerHealth <= 0) {
             System.out.println("You were defeated by the enemy. Game over.");
             break;
         }
-
         // Display current health
         System.out.println("\nPlayer Health: " + playerHealth + " | Enemy Health: " + enemyHealth);
     }
